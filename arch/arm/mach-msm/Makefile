@@ -395,3 +395,4 @@ endif
 obj-$(CONFIG_MACH_SEAN) += msm_vibrator.o
 obj-$(CONFIG_MACH_WARP2) += msm_vibrator.o
 obj-$(CONFIG_MACH_RADIANT) += msm_vibrator.o
+obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
