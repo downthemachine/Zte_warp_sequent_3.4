@@ -1116,6 +1116,8 @@ positive:
 	return 1;
 
 rename_retry:
+  if (locked)
+    goto again;
 	locked = 1;
 	write_seqlock(&rename_lock);
 	goto again;
@@ -1216,6 +1218,8 @@ out:
 	return found;
 
 rename_retry:
+  if (locked)
+    goto again;
 	if (found)
 		return found;
 	locked = 1;
@@ -2963,6 +2967,8 @@ resume:
 	return;
 
 rename_retry:
+  if (locked)
+    goto again;
 	locked = 1;
 	write_seqlock(&rename_lock);
 	goto again;

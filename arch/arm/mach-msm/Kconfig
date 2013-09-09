@@ -2570,4 +2570,11 @@ config MACH_P856S30_BOARD
 config ZTE_FEATURE_CAMERA_KEY_SUPPORT
 	bool "Camera key support"
 
+config FORCE_FAST_CHARGE
+  bool "Force AC charge mode at will"
+  default y
+  help
+    A simple sysfs interface to force adapters that
+    are detected as USB to charge as AC.
+
 endif

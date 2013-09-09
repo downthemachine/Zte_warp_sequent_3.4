@@ -194,7 +194,11 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 export KBUILD_BUILDHOST := $(SUBARCH)
 ARCH		:= arm
 # Linaro 4.7.4
-CROSS_COMPILE	:= /home/downthemachine/toolchain/arm-cortex_a8-linux-gnueabi-linaro_4.7.4-2013.08/bin/arm-cortex_a8-linux-gnueabi-
+# DTM's
+#CROSS_COMPILE	:= /home/downthemachine/toolchain/arm-cortex_a8-linux-gnueabi-linaro_4.7.4-2013.08/bin/arm-cortex_a8-linux-gnueabi-
+
+#DM's
+CROSS_COMPILE	:= /home/dm47021/Android/toolchains/arm-cortex_a8-linux-gnueabi-linaro_4.7.4-2013.08/bin/arm-cortex_a8-linux-gnueabi-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
