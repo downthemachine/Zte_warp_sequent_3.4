@@ -102,6 +102,10 @@ static void set_cpu_work(struct work_struct *work)
 }
 #endif
 
+/* Smooth Scaling port from GS2 */
+unsigned int smooth_level = 99;
+        int i, old_index = INT_MAX;
+
 static int msm_cpufreq_target(struct cpufreq_policy *policy,
 				unsigned int target_freq,
 				unsigned int relation)
@@ -144,6 +148,25 @@ static int msm_cpufreq_target(struct cpufreq_policy *policy,
 		policy->cpu, target_freq, relation,
 		policy->min, policy->max, table[index].frequency);
 #endif
+
+  //from galaxy s2...
+  if(smooth_level < 12)
+  {
+    for (i = 0; table[i].frequency != CPUFREQ_TABLE_END; i++) {
+      if (table[i].frequency == policy->cur)
+        old_index = table[i].index;
+    }
+    if (old_index != INT_MAX) {
+      //pr_debug("old_index: %d index: %d smooth_level: %d\n", old_index, index, smooth_level);
+      /* Do NOT step up max arm clock directly to reduce power consumption */
+      if (index > smooth_level && old_index < smooth_level)
+      {
+        index = smooth_level;
+        //pr_debug("Smooth level is set to %d\n", smooth_level);
+      }
+    }
+    //else pr_debug("old index not found\n");
+  }
 
 #ifdef CONFIG_SMP
 	cpu_work = &per_cpu(cpufreq_work, policy->cpu);
