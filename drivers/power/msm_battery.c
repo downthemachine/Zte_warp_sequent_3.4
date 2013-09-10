@@ -2075,6 +2075,7 @@ static void msm_batt_wait_for_batt_chg_event(struct work_struct *work);
 static DECLARE_WORK(msm_batt_cb_work, msm_batt_wait_for_batt_chg_event);
 
 static struct msm_battery_info msm_batt_info = {
+
 	.batt_handle = -1,
 	.charger_status = CHARGER_STATUS_BAD,
 	.charger_type = CHARGER_TYPE_INVALID,
